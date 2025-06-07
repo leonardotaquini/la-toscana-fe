@@ -31,104 +31,78 @@ import { Logo } from "@/components/logo/logo";
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Iron",
+    email: "ironvera",
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
     {
-      title: "Ver todos",
+      title: "Administrar",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
+      isActive: false,
+
     },
     {
-      title: "Crear pedidos",
+      title: "Crear pizza",
       url: "#",
       icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
+
     },
     {
-      title: "Ventas",
+      title: "Agregar ingrediente",
       url: "#",
       icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+
     },
 
   ],
-  navSecondary: [
+  navMainVentas:[
     {
-      title: "Support",
+      title: "Administrar",
       url: "#",
-      icon: LifeBuoy,
+      icon: SquareTerminal,
+      isActive: false,
+
     },
     {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
-  projects: [
-    {
-      name: "Ver todos",
+      title: "Crear venta",
       url: "#",
       icon: Frame,
-    },
-    {
-      name: "Administrar deliveries",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Estadisticas",
-      url: "#",
-      icon: Map,
+
     },
   ],
+  navMainClientes:[
+    {
+      title: "Administrar",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: false,
+
+    },
+    {
+      title: "Crear cliente",
+      url: "#",
+      icon: LifeBuoy,
+
+    },
+  ],
+  navMainDelivery:[
+    {
+      title: "Administrar",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: false,
+
+    },
+    {
+      title: "Crear delivery",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: false,
+
+    },
+  ]
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -146,8 +120,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavMain items={data.navMain} title="Articulos" />
+        <NavMain items={data.navMainVentas} title="Ventas" />
+        <NavMain items={data.navMainClientes} title="Clientes" />
+        <NavMain items={data.navMainDelivery} title="Delivery" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

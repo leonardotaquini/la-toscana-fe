@@ -31,12 +31,13 @@ interface SidebarMenuItemProps {
       url: string;
     }[];
   }[];
+  title?: string;
 }
 
-export function NavMain({ items }: SidebarMenuItemProps) {
+export function NavMain({ items, title }: SidebarMenuItemProps) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Pedidos</SidebarGroupLabel>
+      <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
