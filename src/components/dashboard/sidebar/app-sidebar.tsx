@@ -50,7 +50,7 @@ const data = {
 
     },
     {
-      title: "Agregar ingrediente",
+      title: "Administrar ingredientes",
       url: "#",
       icon: BookOpen,
 
