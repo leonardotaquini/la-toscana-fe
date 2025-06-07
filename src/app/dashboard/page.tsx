@@ -1,4 +1,5 @@
 import { SidebarHeader } from "@/components/dashboard/sidebar/sidebar-header";
+import { ShiftTimer } from "@/components/dashboard/shift-timer";
 import Link from "next/link";
 
 export default function Page() {
@@ -6,9 +7,7 @@ export default function Page() {
     <>
       <SidebarHeader section="Panel de gestión" title="Inicio" />
       <main className=" grid grid-cols-12 gap-4 p-4 place-items-center h-full">
-        <div className="hover:animate-pulse hover:text-xl border h-full w-full col-span-12 sm:col-span-4 grid place-items-center rounded">
-          Inciar turno
-        </div>
+        <ShiftTimer />
         <Link
           href="/articles"
           className="hover:animate-pulse hover:text-xl border h-full w-full col-span-12 sm:col-span-4 grid place-items-center rounded"
