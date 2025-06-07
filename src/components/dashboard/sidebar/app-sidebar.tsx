@@ -38,20 +38,20 @@ const data = {
   navMain: [
     {
       title: "Administrar",
-      url: "#",
+      url: "/articles",
       icon: SquareTerminal,
       isActive: false,
 
     },
     {
       title: "Crear pizza",
-      url: "#",
+      url: "/articles/new",
       icon: Bot,
 
     },
     {
-      title: "Administrar ingredientes",
-      url: "#",
+      title: "Ingredientes",
+      url: "/ingredients",
       icon: BookOpen,
 
     },
