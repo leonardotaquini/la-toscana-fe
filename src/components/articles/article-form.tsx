@@ -1,41 +1,53 @@
-'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { Button } from '@/components/ui/button';
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
-import { useIngredients } from '@/hooks/use-ingredients';
-import { Article } from '@/hooks/use-articles';
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useIngredients } from "@/hooks/use-ingredients";
+import { Article } from "@/hooks/use-articles";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
-  name: z.string().min(1, 'Nombre requerido'),
-  price: z.coerce.number().nonnegative({ message: 'Precio inválido' }),
+  name: z.string().min(1, "Nombre requerido"),
+  price: z.coerce.number().nonnegative({ message: "Precio inválido" }),
   ingredients: z.array(z.number()).optional().default([]),
 });
 
-export function ArticleForm({
-  initialData,
-  onSubmit,
-}: {
+interface ArticleFormProps {
   initialData?: Article;
-  onSubmit: (data: Omit<Article, 'id'>) => void;
-}) {
+  onSubmit: (data: Omit<Article, "id">) => void;
+}
+
+export function ArticleForm({ initialData, onSubmit }: ArticleFormProps) {
+  const router = useRouter();
   const { ingredients } = useIngredients();
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: initialData ?? { name: '', price: 0, ingredients: [] },
+    defaultValues: initialData ?? { name: "", price: 0, ingredients: [] },
   });
 
   const handleSubmit = (values: z.infer<typeof schema>) => {
     onSubmit(values);
     form.reset();
+    router.push("/articles");
   };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="space-y-4 w-full"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -71,7 +83,7 @@ export function ArticleForm({
                 control={form.control}
                 name="ingredients"
                 render={({ field }) => (
-                  <FormItem className="flex items-center gap-2">
+                  <FormItem className="flex items-center space-x-2 p-3 ">
                     <FormControl>
                       <Checkbox
                         checked={field.value?.includes(ing.id)}
@@ -85,7 +97,9 @@ export function ArticleForm({
                         }}
                       />
                     </FormControl>
-                    <FormLabel className="!mb-0 cursor-pointer" htmlFor={undefined}>{ing.name}</FormLabel>
+                    <FormLabel className="cursor-pointer" htmlFor={undefined}>
+                      {ing.name}
+                    </FormLabel>
                   </FormItem>
                 )}
               />

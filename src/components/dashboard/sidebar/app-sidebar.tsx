@@ -120,7 +120,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} title="Articulos" />
+        <NavMain items={data.navMain} title="Pizzas" />
         <NavMain items={data.navMainVentas} title="Ventas" />
         <NavMain items={data.navMainClientes} title="Clientes" />
         <NavMain items={data.navMainDelivery} title="Delivery" />
